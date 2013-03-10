@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block content %}
+<div class="row">
+    <h2>{{ tag_posts.tag }}</h2>
+</div>
+<div>
+    {% for p in tag_posts.get_posts %}
+    <h4><a href="/blog/{{ p.id }}/">{{ p.title }}</a></h4>
+    {% endfor %}
+</div>
+{% endblock %}
