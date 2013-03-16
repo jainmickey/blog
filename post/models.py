@@ -5,12 +5,8 @@ from django.db import models
 class Tags(models.Model):
     tag = models.CharField(max_length=50)
     
-    posts = []
     def get_posts(self):
-        for post in Post.objects.all():
-            if self in post.tags:
-                posts.append(post)
-        return posts
+        return self.post_set.all()
 
     class Meta:
         verbose_name = 'Tag'
@@ -21,6 +17,9 @@ class Tags(models.Model):
 
 class Category(models.Model):
     category = models.CharField(max_length=100)
+
+    def get_posts(self):
+        return self.post_set.all()
 
     class Meta:
         verbose_name = 'Category'

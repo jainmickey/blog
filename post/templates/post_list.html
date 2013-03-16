@@ -2,11 +2,30 @@
 {% load url from future %}
 
 {% block content %}
-<div class="row">
-    {% for post in post_list %}
-    <h2><a href="/blog/{{ post.id }}/">{{ post.title }}</a></h2>
-    <small>{{ post.date }}</small>
-    <p>{{ post.body }}</p>
-    {% endfor %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span8">
+            {% for post in post_list %}
+            <h2><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h2>
+            <small>{{ post.date }}</small>
+            <p>{{ post.body }}</p>
+            {% endfor %}
+        </div>
+        <div class="span4">
+            <h3>Tags</h3>
+            <ul>
+                {% for tag in all_tags %}
+                <li><a href="{% url 'tag_posts' tag.id %}">{{ tag.tag }}</a></li>
+                {% endfor %}
+            </ul>
+            <br />
+            <h3>Category</h3>
+            <ul>
+                {% for cat in all_categories %}
+                <li><a href="{% url 'cat_posts' cat.id %}">{{ cat.category }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 </div>
 {% endblock %}
