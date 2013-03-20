@@ -5,32 +5,23 @@ from django.template import RequestContext
 from django.views.generic import DetailView, ListView, CreateView
 from post.models import Post, Tags, Category
 
+from post.forms import *
+
 class PostListView(ListView):
     context_object_name = 'post_list'
     template_name = 'post_list.html'
     model = Post
-
-    def get_context_data(self, **kwargs):
-        context = super(PostListView, self).get_context_data(**kwargs)
-        context['all_tags'] = Tags.objects.all()
-        context['all_categories'] = Category.objects.all()
-        return context
 
 class PostDetailView(DetailView):
     context_object_name = 'post'
     template_name = 'post_detail.html'
     model = Post
 
-    def get_context_data(self, **kwargs):
-        context = super(PostDetailView, self).get_context_data(**kwargs)
-        context['all_tags'] = Tags.objects.all()
-        context['all_categories'] = Category.objects.all()
-        return context
-
 class PostCreateView(CreateView):
     model = Post
-    template_name = 'blog_post_create.html'
-    success_url = '/post/create/'
+    form_class = PostForm
+    template_name = 'post_create.html'
+
 
 class PostTagView(ListView):
     context_object_name = 'posts'

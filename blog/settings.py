@@ -7,7 +7,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('Your Name', 'your_email@example.com'),
+    ('Mayank Jain', 'jainmickey93@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -82,6 +82,16 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.request',
+    'django.core.context_processors.static',
+    'blog.context_processors.navigation',
 )
 
 # Make this unique, and don't share it with anybody.

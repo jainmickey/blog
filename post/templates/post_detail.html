@@ -4,7 +4,7 @@
 {% block content %}
 <div class="container-fluid">
     <div class="row-fluid">
-<div class="span8">
+    <div class="span8">
     <h1>{{ post.title }}</h1>
     <div class="span3">
         <small>{{ post.date }}</small>
@@ -20,21 +20,8 @@
         <ul>
             <li> {{ post.category }} </li>
         </ul>
-</div>
-<div class="span4">
-    <h3>Tags</h3>
-    <ul>
-        {% for tag in all_tags %}
-        <li><a href="{% url 'tag_posts' tag.id %}">{{ tag.tag }}</a></li>
-        {% endfor %}
-    </ul>
-    <h3>Category</h3>
-    <ul>
-        {% for cat in all_categories %}
-        <li><a href="{% url 'cat_posts' cat.id %}">{{ cat.category }}</a></li>
-        {% endfor %}
-    </ul>
-</div>
+    </div>
+    {% include "navigation.html" %}
 </div>
 </div>
 {% endblock %}

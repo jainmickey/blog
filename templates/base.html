@@ -11,6 +11,9 @@
     <div class="header hero-unit">
         <h1><a href="{% url 'post_list' %}">My Blog</a></h1>
         <p class="lead">from Mayank Jain</p>
+        <div class="row">
+            <a href="{% url 'post_create' %}" class="btn btn-primary pull-right">New Post</a>
+        </div>
     </div>
     <div class="content">
         {% block content %}{% endblock %}
