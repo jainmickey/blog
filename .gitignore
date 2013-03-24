@@ -1,2 +1,2 @@
-post/.views.py.swp
-templates/.base.html.swp
+*.swp
+*.pyc
