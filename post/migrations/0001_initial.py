@@ -27,7 +27,8 @@ class Migration(SchemaMigration):
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('title', self.gf('django.db.models.fields.CharField')(max_length=300)),
             ('body', self.gf('django.db.models.fields.TextField')()),
-            ('date', self.gf('django.db.models.fields.DateField')(auto_now=True, blank=True)),
+            ('date', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
+            ('published', self.gf('django.db.models.fields.BooleanField')(default=True)),
             ('category', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['post.Category'])),
         ))
         db.send_create_signal('post', ['Post'])
@@ -65,8 +66,9 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Post'},
             'body': ('django.db.models.fields.TextField', [], {}),
             'category': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['post.Category']"}),
-            'date': ('django.db.models.fields.DateField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'date': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'published': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'tags': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['post.Tags']", 'symmetrical': 'False'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '300'})
         },

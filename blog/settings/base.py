@@ -131,7 +131,7 @@ TEMPLATE_DIRS = (
     root("templates"),
 )
 
-INSTALLED_APPS = (
+DJANGO_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -139,9 +139,17 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'post',
+)
+
+THIRD_PARTY_APPS = (
     'south',
 )
+
+LOCAL_APPS = (
+    'post',
+)
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

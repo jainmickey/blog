@@ -1,10 +1,11 @@
+from django.contrib.auth.models import User
 from django.db import models
-
-# Create your models here.
+from django.template.defaultfilters import slugify
+from django.core.urlresolvers import reverse
 
 class Tags(models.Model):
     tag = models.CharField(max_length=50)
-    
+
     def get_posts(self):
         return self.post_set.all()
 
@@ -31,12 +32,26 @@ class Category(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=300)
     body = models.TextField()
-    date = models.DateField(auto_now=True)
+    date = models.DateTimeField(auto_now=True, editable=False)
+    published = models.BooleanField(default=True)
     tags = models.ManyToManyField(Tags)
     category = models.ForeignKey(Category)
+    author = models.ForeignKey(User, related_name="posts")
+    slug = models.SlugField(max_length=300, blank=True, default='')
+
+    class Meta:
+        ordering = ["date", "title"]
 
     def get_tags(self):
         return self.tags.all()
 
+    def get_absolute_url(self):
+        return reverse('post_list')
+
     def __unicode__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super(Post, self).save(*args, **kwargs)

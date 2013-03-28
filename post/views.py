@@ -22,7 +22,6 @@ class PostCreateView(CreateView):
     form_class = PostForm
     template_name = 'post_create.html'
 
-
 class PostTagView(ListView):
     context_object_name = 'posts'
     template_name = 'tag_posts.html'
